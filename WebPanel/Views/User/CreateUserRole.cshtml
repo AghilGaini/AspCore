@@ -1,0 +1,33 @@
+﻿@model List<UserRoleViewModel>
+@{
+    ViewBag.Title = "User Role Page";
+}
+
+<h3>Manage roles for @ViewBag.UserName</h3>
+<form method="post" asp-action="CreateUserRole">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>IsSelected</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input asp-for="@Model[i].RoleName" type="hidden">
+                        <input asp-for="@Model[i].RoleID" type="hidden">
+                        @Model[i].RoleName
+                    </td>
+                    <td>
+                        <input asp-for="@Model[i].IsSelected">
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+

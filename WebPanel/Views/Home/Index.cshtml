@@ -1,0 +1,11 @@
+﻿@model IEnumerable<CityDomain>
+
+@{
+    ViewBag.Title = "Index Page";
+}
+
+@foreach (var item in Model)
+{
+    <h1>@item.Name</h1>
+}
+
