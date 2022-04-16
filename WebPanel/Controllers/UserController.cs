@@ -115,24 +115,51 @@ namespace WebPanel.Controllers
                 throw new Exception("User Not Found");
 
             var allRoles = _roleManager.Roles.ToList();
-            var userRole = new List<UserRoleViewModel>();
+            var userRole = new UserRoleViewModel();
 
             foreach (var item in allRoles)
             {
-                userRole.Add(new UserRoleViewModel()
+                var newInfo = new RoleInfoViewModel()
                 {
                     RoleID = item.Id,
-                    RoleName = item.Name,
-                    IsSelected = false
-                });
+                    RoleName = item.Name
+                };
+
+                if (await _userManager.IsInRoleAsync(user, item.Name))
+                    newInfo.IsSelected = true;
+                else
+                    newInfo.IsSelected = false;
+
+                userRole.rolesInfo.Add(newInfo);
             }
+            userRole.userId = user.Id;
+
             ViewBag.UserName = user.UserName;
             return View(userRole);
         }
 
         [HttpPost]
-        public IActionResult CreateUserRole(List<UserRoleViewModel> userRoles)
+        public async Task<IActionResult> CreateUserRole(UserRoleViewModel model)
         {
+            var user = await _userManager.FindByIdAsync(model.userId);
+            if (user == null)
+                throw new Exception("User not found");
+
+            var roles = await _userManager.GetRolesAsync(user);
+            await _userManager.RemoveFromRolesAsync(user, roles);
+
+            var res = await _userManager.AddToRolesAsync(user, model.rolesInfo.Where(r => r.IsSelected).Select(r => r.RoleName));
+
+            if (res.Succeeded)
+            {
+                return RedirectToAction("Index", "User");
+            }
+
+            foreach (var item in res.Errors)
+            {
+                ModelState.AddModelError("", item.Description);
+            }
+
             return View();
         }
 

@@ -1,19 +1,34 @@
-﻿@model List<IdentityRole>
+﻿@model RoleViewModel
 @{
     ViewBag.Title = "Role Page";
 }
 
-<table class="table table-dark">
+<table class="table table-dark" style="margin-top:5%">
     <thead>
         <tr>
-            <th>RoleName</th>
+            <th>Name</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Roles)
         {
             <tr>
                 <td>@item.Name</td>
+                <td>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Actions
+                    </button>
+                    <div class="dropdown-menu shadow animated--grow-in">
+                        @foreach (var link in Model.Actions)
+                        {
+                            <a style='margin-right:16px' class="dropdown-item"
+                       asp-controller="@link.Controller" asp-action="@link.Action" asp-route-roleId="@item.Id">
+                                <i class="fas fa-wrench"></i> @link.Title
+                            </a>
+                        }
+                    </div>
+                </td>
             </tr>
         }
     </tbody>

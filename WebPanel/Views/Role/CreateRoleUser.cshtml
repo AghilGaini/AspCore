@@ -1,12 +1,12 @@
-﻿@model UserRoleViewModel
+﻿@model RoleUserViewModel
 @{
-    ViewBag.Title = "User Role Page";
+    ViewBag.Title = "Role User Page";
 }
 
-<h3>Manage roles for @ViewBag.UserName</h3>
+<h3>Manage Users for @ViewBag.RoleTitle</h3>
 
 <form method="post" asp-action="CreateUserRole">
-    <input asp-for="userId" type="hidden" />
+    <input asp-for="RoleId" type="hidden" />
     <table class="table table-dark">
         <thead>
             <tr>
@@ -15,16 +15,16 @@
             </tr>
         </thead>
         <tbody>
-            @for (int i = 0; i < Model.rolesInfo.Count; i++)
+            @for (int i = 0; i < Model.UserInfo.Count; i++)
             {
                 <tr>
                     <td>
-                        <input asp-for="@Model.rolesInfo[i].RoleName" type="hidden">
-                        <input asp-for="@Model.rolesInfo[i].RoleID" type="hidden">
-                        @Model.rolesInfo[i].RoleName
+                        <input asp-for="@Model.UserInfo[i].UserName" type="hidden">
+                        <input asp-for="@Model.UserInfo[i].UserId" type="hidden">
+                        @Model.UserInfo[i].UserName
                     </td>
                     <td>
-                        <input asp-for="@Model.rolesInfo[i].IsSelected">
+                        <input asp-for="@Model.UserInfo[i].IsSelected">
                     </td>
                 </tr>
             }
