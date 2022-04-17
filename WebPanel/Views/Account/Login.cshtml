@@ -1,0 +1,24 @@
+﻿@model WebPanel.ViewModels.Account.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<form method="post" asp-action="Login" asp-controller="Account">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row">
+        <label asp-for="UserName" class="col-6">UserName</label>
+        <input asp-for="UserName" class="col-6" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="row">
+        <label asp-for="Password" class="col-6">Password</label>
+        <input asp-for="Password" class="col-6" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="row">
+        <label asp-for="RememberMe" class="col-6">RememberMe</label>
+        <input asp-for="RememberMe" class="col-6" />
+        <span asp-validation-for="RememberMe" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>

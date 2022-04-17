@@ -115,8 +115,28 @@ namespace WebPanel.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRoleUser(RoleUserViewModel model)
+        public async Task<IActionResult> CreateRoleUser(RoleUserViewModel model)
         {
+            var role = await _roleManager.FindByIdAsync(model.RoleId);
+
+            if (role == null)
+            {
+                throw new Exception("Role not found");
+            }
+
+            foreach (var item in model.UserInfo)
+            {
+                var user = _userManager.Users.FirstOrDefault(r => r.Id == item.UserId);
+                if (user == null)
+                    continue;
+
+                if (item.IsSelected)
+                    await _userManager.AddToRoleAsync(user, role.Name);
+                else
+                    await _userManager.RemoveFromRoleAsync(user, role.Name);
+            }
+
+            return RedirectToAction("Index", "Role");
 
         }
 
