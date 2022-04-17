@@ -114,6 +114,11 @@ namespace WebPanel.Controllers
             return View(roleUser);
         }
 
+        [HttpPost]
+        public IActionResult CreateRoleUser(RoleUserViewModel model)
+        {
+
+        }
 
     }
 }
