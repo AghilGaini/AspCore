@@ -41,6 +41,12 @@ namespace WebPanel.Controllers
                 Controller = "Role",
             });
 
+            info.Actions.Add(new ActionItem()
+            {
+                Title = "Manage Permisions",
+                Action = "RolePermision",
+                Controller = "Permision",
+            });
 
             return View(info);
         }
