@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace WebPanel.ViewModels.Permision
 {
@@ -6,19 +7,18 @@ namespace WebPanel.ViewModels.Permision
     {
         public RolePermisionViewModel()
         {
-            PermisionInfos = new List<PermisionInfo>();
+            Claims = new List<ClaimInfo>();
         }
 
         public string RoleId { get; set; }
-        public List<PermisionInfo> PermisionInfos { get; set; }
-
+        public List<ClaimInfo> Claims { get; set; }
     }
 
-    public class PermisionInfo
+    public class ClaimInfo
     {
-        public string Type { get; set; }
-        public string Value { get; set; }
         public bool IsSelected { get; set; }
+        public string Title { get; set; }
     }
+
 
 }

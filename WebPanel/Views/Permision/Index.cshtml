@@ -1,0 +1,34 @@
+﻿@model WebPanel.ViewModels.Permision.RolePermisionViewModel
+@{
+    ViewBag.Title = "Permision Page";
+}
+
+<form method="post" asp-action="CreateRolePermision">
+    <table class="table table-dark" style="margin-top:5%">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>IsSelected</th>
+            </tr>
+        </thead>
+        <div style="display:none">
+            <input asp-for="RoleId" type="hidden" />
+        </div>
+        <tbody>
+            @for (int i = 0; i < Model.Claims.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input asp-for="@Model.Claims[i].Title" type="hidden">
+                        @Model.Claims[i].Title
+                    </td>
+                    <td>
+                        <input asp-for="@Model.Claims[i].IsSelected">
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

@@ -44,7 +44,7 @@ namespace WebPanel.Controllers
             info.Actions.Add(new ActionItem()
             {
                 Title = "Manage Permisions",
-                Action = "RolePermision",
+                Action = "Index",
                 Controller = "Permision",
             });
 
