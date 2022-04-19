@@ -1,23 +1,25 @@
-﻿namespace WebPanel.Models
+﻿using System;
+
+namespace WebPanel.Models
 {
-    public static class PermisionManager
+    public class PermisionManager
     {
 
-        public static class AccountController
+        public class AccountController
         {
-            public static class LoginAction
+            public class LoginAction
             {
-                public static string HttpPost { get { return "1"; } }
-                public static string HttpGet { get { return "2"; } }
+                public string HttpPost { get { return "Permision.Account.Login.HttpGet/D85202DC-4C79-4FA3-816C-BD4E03EF93CE"; } }
+                public string HttpGet { get { return "Permision.Account.Login.HttpGet/9CA368C5-8EE9-47C5-A601-A238CBE23FB1"; } }
             }
         }
 
-        public static class HomeController
+        public class HomeController
         {
-            public static class IndexAction
+            public class IndexAction
             {
-                public static string HttpPost { get { return "1"; } }
-                public static string HttpGet { get { return "2"; } }
+                public string HttpPost { get { return "Permision.Home.Index.HttpPost/8C782231-9FC5-423D-BA14-752956456A4C"; } }
+                public string HttpGet { get { return "Permision.Home.Index.HttpGet/25A67B3C-EAB9-45FF-A4CE-DF63B627C64F"; } }
             }
         }
 

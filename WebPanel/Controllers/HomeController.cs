@@ -1,5 +1,8 @@
 ﻿using Database.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebPanel.Controllers
 {
@@ -16,5 +19,11 @@ namespace WebPanel.Controllers
             var res = _context._cityRepository.GetAll();
             return View(res);
         }
+
+        public IActionResult Test()
+        {
+            return View();
+        }
+
     }
 }
