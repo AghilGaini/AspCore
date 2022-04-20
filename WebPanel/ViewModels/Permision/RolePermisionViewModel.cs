@@ -18,6 +18,7 @@ namespace WebPanel.ViewModels.Permision
     {
         public bool IsSelected { get; set; }
         public string Title { get; set; }
+        public string Value { get; set; }
     }
 
 

@@ -3,7 +3,7 @@
     ViewBag.Title = "Permision Page";
 }
 
-<form method="post" asp-action="CreateRolePermision">
+<form method="post" asp-action="Index">
     <table class="table table-dark" style="margin-top:5%">
         <thead>
             <tr>
@@ -20,6 +20,7 @@
                 <tr>
                     <td>
                         <input asp-for="@Model.Claims[i].Title" type="hidden">
+                        <input asp-for="@Model.Claims[i].Value" type="hidden">
                         @Model.Claims[i].Title
                     </td>
                     <td>

@@ -24,7 +24,6 @@ namespace WebPanel.Controllers
 
         public async Task<IActionResult> Index(string roleId)
         {
-
             var role = await _roleManager.FindByIdAsync(roleId);
 
             if (role == null)
@@ -32,34 +31,24 @@ namespace WebPanel.Controllers
                 throw new Exception("Role not found");
             }
 
-            var claims = await _roleManager.GetClaimsAsync(role);
+            var allPermisions = _unitOfWorkRepository._permisionRepository.GetAll();
 
-            if (claims.Count == 0)
-            {
-                var newClaim = new System.Security.Claims.Claim("Permision", "12345");
-                var res = await _roleManager.AddClaimAsync(role, newClaim);
-
-                if (res.Succeeded)
-                {
-                    return View();
-                }
-            }
-
-            var permisions = new Utilities.PermisionManager().GetPrmisions();
+            var allclaims = await _roleManager.GetClaimsAsync(role);
 
             var rolePermision = new RolePermisionViewModel()
             {
                 RoleId = roleId
             };
 
-            foreach (var item in permisions)
+            foreach (var item in allPermisions)
             {
 
-                if (claims.Any(r => r.Type == "Permision" && r.Value == item.Value))
+                if (allclaims.Any(r => r.Type == item.Title && r.Value == item.Value))
                 {
                     rolePermision.Claims.Add(new ClaimInfo()
                     {
-                        Title = item.Key,
+                        Title = item.Title,
+                        Value = item.Value,
                         IsSelected = true
                     });
                 }
@@ -67,7 +56,8 @@ namespace WebPanel.Controllers
                 {
                     rolePermision.Claims.Add(new ClaimInfo()
                     {
-                        Title = item.Key,
+                        Title = item.Title,
+                        Value = item.Value,
                         IsSelected = false
                     });
                 }
@@ -77,7 +67,7 @@ namespace WebPanel.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRolePermision(RolePermisionViewModel model)
+        public async Task<IActionResult> Index(RolePermisionViewModel model)
         {
             var role = await _roleManager.FindByIdAsync(model.RoleId);
 
@@ -88,11 +78,20 @@ namespace WebPanel.Controllers
 
             var allClaims = await _roleManager.GetClaimsAsync(role);
 
+
             foreach (var item in model.Claims)
             {
+                if (allClaims.Any(r => r.Type == item.Title && r.Value == item.Value) && !item.IsSelected)
+                {
+                    await _roleManager.RemoveClaimAsync(role, new Claim(item.Title, item.Value));
+                }
+                else if (!allClaims.Any(r => r.Type == item.Title && r.Value == item.Value) && item.IsSelected)
+                {
+                    await _roleManager.AddClaimAsync(role, new Claim(item.Title, item.Value));
+                }
             }
 
-            return View();
+            return RedirectToAction("Index", "Role", new { roleId = role.Id });
         }
 
     }

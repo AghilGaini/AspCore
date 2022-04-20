@@ -1,1 +1,2 @@
-implemet DI for PermisionManager class and start it out from home/index !!
+1-implemet DI for PermisionManager class and start it out from home/index !!
+2-Check setPermision to save and remove based on value and title
