@@ -33,6 +33,7 @@ namespace WebPanel
 
             services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<IPermisionRepository, PermisionRepository>();
 
             #endregion
 
@@ -42,8 +43,6 @@ namespace WebPanel
                 .AddEntityFrameworkStores<ApplicationContext>();
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
-
-            var t = Utilities.PermisionManager.GetPrmisions();
 
         }
 

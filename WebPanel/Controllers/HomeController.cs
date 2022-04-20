@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Utilities;
 
 namespace WebPanel.Controllers
 {
@@ -16,6 +17,7 @@ namespace WebPanel.Controllers
         }
         public IActionResult Index()
         {
+            new PermisionManager().SetPermisions(_context);
             var res = _context._cityRepository.GetAll();
             return View(res);
         }

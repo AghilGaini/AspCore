@@ -9,6 +9,7 @@ namespace Database.Domain.Interfaces
     public interface IUnitOfWorkRepository : IDisposable
     {
         ICityRepository _cityRepository { get; }
+        IPermisionRepository _permisionRepository { get; }
         void Complete();
     }
 }

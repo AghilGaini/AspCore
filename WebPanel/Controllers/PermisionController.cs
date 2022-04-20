@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Database.Domain.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,15 @@ namespace WebPanel.Controllers
     public class PermisionController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
-        public PermisionController(RoleManager<IdentityRole> roleManager)
+        private readonly IUnitOfWorkRepository _unitOfWorkRepository;
+
+        public PermisionController(RoleManager<IdentityRole> roleManager,
+            IUnitOfWorkRepository unitOfWorkRepository)
         {
             this._roleManager = roleManager;
+            this._unitOfWorkRepository = unitOfWorkRepository;
         }
+
         public async Task<IActionResult> Index(string roleId)
         {
 
@@ -39,7 +45,7 @@ namespace WebPanel.Controllers
                 }
             }
 
-            var permisions = Utilities.PermisionManager.GetPrmisions();
+            var permisions = new Utilities.PermisionManager().GetPrmisions();
 
             var rolePermision = new RolePermisionViewModel()
             {

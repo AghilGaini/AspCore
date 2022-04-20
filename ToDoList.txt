@@ -1,0 +1,1 @@
+implemet DI for PermisionManager class and start it out from home/index !!

@@ -16,5 +16,6 @@ namespace DatabaseAccess.EFCore
 
         }
         public DbSet<CityDomain> Cities { get; set; }
+        public DbSet<PermisionDomain> Permisions { get; set; }
     }
 }

@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Database.Domain.Entities;
+using Database.Domain.Interfaces;
+using DatabaseAccess.EFCore;
+using DatabaseAccess.EFCore.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -27,7 +32,7 @@ namespace Utilities
             }
         }
 
-        public static List<KeyValuePair<string, string>> GetPrmisions()
+        public List<KeyValuePair<string, string>> GetPrmisions()
         {
             #region Permision Checker
 
@@ -74,5 +79,28 @@ namespace Utilities
 
             #endregion
         }
+
+        public void SetPermisions(IUnitOfWorkRepository context)
+        {
+            var databasePermisions = context._permisionRepository.GetAll();
+            var newPermisions = new List<PermisionDomain>();
+            var res = new PermisionManager().GetPrmisions();
+            foreach (var item in res)
+            {
+                if (!databasePermisions.Any(r => r.Value == item.Value))
+                    newPermisions.Add(new PermisionDomain()
+                    {
+                        Title = item.Key,
+                        Value = item.Value,
+                    });
+            }
+
+            context._permisionRepository.AddRange(newPermisions);
+            context.Complete();
+
+
+
+        }
+
     }
 }
