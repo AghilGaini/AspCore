@@ -3,6 +3,8 @@
     ViewBag.Title = "Permision Page";
 }
 
+<h1>Permisions for Role : @ViewBag.RoleName</h1>
+
 <form method="post" asp-action="Index">
     <table class="table table-dark" style="margin-top:5%">
         <thead>
@@ -32,4 +34,7 @@
         </tbody>
     </table>
     <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-action="Index" asp-controller="Role" class="btn btn-danger">
+        Cancel
+    </a>
 </form>

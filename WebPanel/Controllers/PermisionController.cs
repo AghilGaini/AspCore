@@ -63,6 +63,7 @@ namespace WebPanel.Controllers
                 }
             }
 
+            ViewBag.RoleName = role.Name;
             return View(rolePermision);
         }
 
