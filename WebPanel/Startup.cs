@@ -42,7 +42,12 @@ namespace WebPanel
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationContext>();
 
-            services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
+
+            services.AddAuthorization();
 
         }
 
@@ -56,8 +61,13 @@ namespace WebPanel
 
             app.UseStaticFiles();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseMvc(routes =>
-            routes.MapRoute("Default", "{controller=Home}/{action=Index}/{Id?}"));
+            {
+                routes.MapRoute("Default", "{controller=Home}/{action=Index}/{Id?}");
+            });
 
             //app.UseRouting();
 

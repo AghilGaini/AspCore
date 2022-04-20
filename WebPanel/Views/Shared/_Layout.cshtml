@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<IdentityUser> _signInManager
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -15,24 +16,39 @@
 <body>
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Aghil-WebPanel</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Other</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        Security
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" asp-action="Index" asp-controller="User">Users</a>
-                        <a class="dropdown-item" asp-action="Index" asp-controller="Role">Roles</a>
-                    </div>
-                </li>
+
+                @if (_signInManager.IsSignedIn(User))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Security
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" asp-action="Index" asp-controller="User">Users</a>
+                            <a class="dropdown-item" asp-action="Index" asp-controller="Role">Roles</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Logout" asp-controller="Account">Logout</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Login" asp-controller="Account">Login</a>
+                    </li>
+                }
+
             </ul>
         </div>
     </nav>
