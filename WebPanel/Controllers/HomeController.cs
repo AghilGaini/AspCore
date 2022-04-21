@@ -8,7 +8,7 @@ using Utilities;
 
 namespace WebPanel.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly IUnitOfWorkRepository _context;
@@ -26,6 +26,9 @@ namespace WebPanel.Controllers
 
         public IActionResult Test()
         {
+            Response.StatusCode = 404;
+            throw new Exception("Test Error Message");
+
             return View();
         }
 

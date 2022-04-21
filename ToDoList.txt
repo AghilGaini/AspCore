@@ -1,2 +1,31 @@
 1-implemet DI for PermisionManager class and start it out from home/index !!
 2-Check setPermision to save and remove based on value and title
+3-change logout action from get to post
+4-right navbar for login and logout
+5-Logging
+6-Centralised error handling 
+7-client side validation 
+8-claim based authorization 
+9-create popup
+
+
+
+** Docker 
+** Custome Logging
+** Coding in linux
+------------------priority------------
+-> Centralised exception handling
+-> Claim based permisions
+-> Logging system
+-> ClientSide validation
+-> popup and implement ajax instead of post requests
+
+
+
+
+
+
+
+
+
+
