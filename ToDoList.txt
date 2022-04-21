@@ -14,9 +14,10 @@
 ** Custome Logging
 ** Coding in linux
 ------------------priority------------
--> Centralised exception handling
+-> Centralised exception handling   ***
 -> Claim based permisions
--> Logging system
+-> Logging system   ***
+-> Custom config for logging system 
 -> ClientSide validation
 -> popup and implement ajax instead of post requests
 

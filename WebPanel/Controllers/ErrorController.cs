@@ -1,11 +1,18 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace WebPanel.Controllers
 {
     public class ErrorController : Controller
     {
+        private readonly ILogger<ErrorController> _logger;
+
+        public ErrorController(ILogger<ErrorController> logger)
+        {
+            this._logger = logger;
+        }
 
         [Route("Error/{statusCode}")]
         [AllowAnonymous]
@@ -15,9 +22,11 @@ namespace WebPanel.Controllers
             {
                 case 404:
                     ViewBag.ErrorMessage = "Sorry,The resource that requested not found";
+                    _logger.LogError("Sorry, The resource that requested not found");
                     break;
                 default:
                     ViewBag.ErrorMessage = "Sorry, Something is wrong";
+                    _logger.LogError("Sorry, Something is wrong");
                     break;
             }
 
@@ -30,6 +39,8 @@ namespace WebPanel.Controllers
             var exceptionDetails = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
 
             ViewBag.ErrorMessage = exceptionDetails.Error.Message;
+
+            _logger.LogError(exceptionDetails.Error.Message);
 
             return View();
         }
