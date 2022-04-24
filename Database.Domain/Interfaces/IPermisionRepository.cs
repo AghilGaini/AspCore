@@ -9,6 +9,6 @@ namespace Database.Domain.Interfaces
 {
     public interface IPermisionRepository : IGenericRepository<PermisionDomain>
     {
-
+        List<PermisionDomain> GetByPermisionIds(List<long> permisionIds);
     }
 }

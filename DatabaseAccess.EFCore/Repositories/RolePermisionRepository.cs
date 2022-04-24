@@ -21,5 +21,10 @@ namespace DatabaseAccess.EFCore.Repositories
         {
             return _context.RolePermisions.Where(x => x.RoleId == roleId).ToList();
         }
+
+        public List<RolePermisionDomain> GetByRoleIds(List<string> roleIds)
+        {
+            return _context.RolePermisions.Where(r => roleIds.Any(x => x == r.RoleId)).ToList();
+        }
     }
 }

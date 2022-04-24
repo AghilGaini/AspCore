@@ -10,6 +10,7 @@ namespace Database.Domain.Interfaces
     public interface IRolePermisionRepository : IGenericRepository<RolePermisionDomain>
     {
         List<RolePermisionDomain> GetByRoleId(string roleId);
+        List<RolePermisionDomain> GetByRoleIds(List<string> roleId);
 
     }
 }

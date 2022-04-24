@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Utilities;
+using WebPanel.Filters;
 
 namespace WebPanel.Controllers
 {
+    [CustomAuthorization(permision: "D85202DC-4C79-4FA3-816C-BD4E03EF93CE")]
     public class TestController : Controller
     {
         private readonly ILogger<TestController> _logger;

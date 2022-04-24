@@ -16,5 +16,10 @@ namespace DatabaseAccess.EFCore.Repositories
         {
             this._context = context;
         }
+
+        public List<PermisionDomain> GetByPermisionIds(List<long> permisionIds)
+        {
+            return _context.Permisions.Where(r => permisionIds.Any(x => x == r.ID)).ToList();
+        }
     }
 }
