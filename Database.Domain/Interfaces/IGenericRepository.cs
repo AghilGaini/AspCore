@@ -14,6 +14,7 @@ namespace Database.Domain.Interfaces
         void Update(T entity);
         void Delete(T entity);
         void AddRange(IEnumerable<T> entities);
+        void RemoveRange(IEnumerable<T> entities);
 
     }
 }

@@ -10,6 +10,7 @@ namespace Database.Domain.Interfaces
     {
         ICityRepository _cityRepository { get; }
         IPermisionRepository _permisionRepository { get; }
+        IRolePermisionRepository _rolePermisionRepository { get; }
         void Complete();
     }
 }

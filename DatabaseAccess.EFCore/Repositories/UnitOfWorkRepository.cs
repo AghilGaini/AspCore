@@ -15,11 +15,14 @@ namespace DatabaseAccess.EFCore.Repositories
 
         public IPermisionRepository _permisionRepository { get; set; }
 
+        public IRolePermisionRepository _rolePermisionRepository { get; set; }
+
         public UnitOfWorkRepository(ApplicationContext context)
         {
             this._context = context;
             _cityRepository = new CityRepository(context);
             _permisionRepository = new PermisionRepository(context);
+            _rolePermisionRepository = new RolePermisionRepository(context);
         }
 
         public void Complete()

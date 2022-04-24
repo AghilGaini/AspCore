@@ -7,18 +7,19 @@ namespace WebPanel.ViewModels.Permision
     {
         public RolePermisionViewModel()
         {
-            Claims = new List<ClaimInfo>();
+            Claims = new List<PermisionInfo>();
         }
 
         public string RoleId { get; set; }
-        public List<ClaimInfo> Claims { get; set; }
+        public List<PermisionInfo> Claims { get; set; }
     }
 
-    public class ClaimInfo
+    public class PermisionInfo
     {
         public bool IsSelected { get; set; }
         public string Title { get; set; }
         public string Value { get; set; }
+        public long PermisionId { get; set; }
     }
 
 

@@ -41,6 +41,11 @@ namespace DatabaseAccess.EFCore.Repositories
             return _context.Set<T>().Find(id);
         }
 
+        public void RemoveRange(IEnumerable<T> entities)
+        {
+            _context.Set<T>().RemoveRange(entities);
+        }
+
         public void Update(T entity)
         {
             _context.Set<T>().Update(entity);

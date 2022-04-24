@@ -1,4 +1,5 @@
-﻿using Database.Domain.Interfaces;
+﻿using Database.Domain.Entities;
+using Database.Domain.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -31,9 +32,10 @@ namespace WebPanel.Controllers
                 throw new Exception("Role not found");
             }
 
+            var allRolePermisions = _unitOfWorkRepository._rolePermisionRepository.GetByRoleId(roleId);
+
             var allPermisions = _unitOfWorkRepository._permisionRepository.GetAll();
 
-            var allclaims = await _roleManager.GetClaimsAsync(role);
 
             var rolePermision = new RolePermisionViewModel()
             {
@@ -43,21 +45,23 @@ namespace WebPanel.Controllers
             foreach (var item in allPermisions)
             {
 
-                if (allclaims.Any(r => r.Type == item.Title && r.Value == item.Value))
+                if (allRolePermisions.Any(r => r.PermisionId == item.ID))
                 {
-                    rolePermision.Claims.Add(new ClaimInfo()
+                    rolePermision.Claims.Add(new PermisionInfo()
                     {
                         Title = item.Title,
                         Value = item.Value,
+                        PermisionId = item.ID,
                         IsSelected = true
                     });
                 }
                 else
                 {
-                    rolePermision.Claims.Add(new ClaimInfo()
+                    rolePermision.Claims.Add(new PermisionInfo()
                     {
                         Title = item.Title,
                         Value = item.Value,
+                        PermisionId = item.ID,
                         IsSelected = false
                     });
                 }
@@ -77,20 +81,27 @@ namespace WebPanel.Controllers
                 throw new Exception("Role not found");
             }
 
-            var allClaims = await _roleManager.GetClaimsAsync(role);
+            var allRolePermisions = _unitOfWorkRepository._rolePermisionRepository.GetByRoleId(role.Id);
 
+            _unitOfWorkRepository._rolePermisionRepository.RemoveRange(allRolePermisions);
+            _unitOfWorkRepository.Complete();
+
+            var newRolePermisions = new List<RolePermisionDomain>();
 
             foreach (var item in model.Claims)
             {
-                if (allClaims.Any(r => r.Type == item.Title && r.Value == item.Value) && !item.IsSelected)
+                if (!item.IsSelected)
+                    continue;
+
+                newRolePermisions.Add(new RolePermisionDomain()
                 {
-                    await _roleManager.RemoveClaimAsync(role, new Claim(item.Title, item.Value));
-                }
-                else if (!allClaims.Any(r => r.Type == item.Title && r.Value == item.Value) && item.IsSelected)
-                {
-                    await _roleManager.AddClaimAsync(role, new Claim(item.Title, item.Value));
-                }
+                    PermisionId = item.PermisionId,
+                    RoleId = role.Id
+                });
             }
+
+            _unitOfWorkRepository._rolePermisionRepository.AddRange(newRolePermisions);
+            _unitOfWorkRepository.Complete();
 
             return RedirectToAction("Index", "Role", new { roleId = role.Id });
         }
