@@ -30,6 +30,19 @@ namespace Utilities
                 public static string HttpPost { get { return "Permision.Home.Index.HttpPost/8C782231-9FC5-423D-BA14-752956456A4C"; } }
                 public static string HttpGet { get { return "Permision.Home.Index.HttpGet/25A67B3C-EAB9-45FF-A4CE-DF63B627C64F"; } }
             }
+            public class TestAction
+            {
+                public static string HttpGet { get { return "Permision.Home.Test.HttpGet/AB7826A4-C5A3-4462-BFC7-841B1D7A918F"; } }
+            }
+        }
+
+        public class TestController
+        {
+            public class IndexAction
+            {
+                public static string HttpPost { get { return "Permision.Test.Index.HttpPost/4C529D65-E442-4CFE-9388-6B4F42C96B5C"; } }
+                public static string HttpGet { get { return "Permision.Test.Index.HttpGet/7785109F-C308-4A7B-A46A-DFDC845A56DD"; } }
+            }
         }
 
         public List<KeyValuePair<string, string>> GetPrmisions()
@@ -97,8 +110,6 @@ namespace Utilities
 
             context._permisionRepository.AddRange(newPermisions);
             context.Complete();
-
-
 
         }
 

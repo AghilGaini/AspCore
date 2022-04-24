@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Utilities;
 using WebPanel.Filters;
 
 namespace WebPanel.Controllers
 {
-    [CustomAuthorization(permision: "D85202DC-4C79-4FA3-816C-BD4E03EF93CE")]
     public class TestController : Controller
     {
         private readonly ILogger<TestController> _logger;
@@ -14,13 +14,14 @@ namespace WebPanel.Controllers
             this._logger = logger;
         }
 
+        [CustomAuthorization(permision: "7785109F-C308-4A7B-A46A-DFDC845A56DD")]
         [HttpGet]
         public IActionResult Index()
         {
-            _logger.LogInformation("test of logger");
             return View();
         }
 
+        [CustomAuthorization(permision: "4C529D65-E442-4CFE-9388-6B4F42C96B5C")]
         [HttpPost]
         public IActionResult Index(int i)
         {

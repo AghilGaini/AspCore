@@ -6,7 +6,6 @@ using WebPanel.ViewModels.Account;
 
 namespace WebPanel.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -43,7 +42,6 @@ namespace WebPanel.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -52,6 +50,7 @@ namespace WebPanel.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult AccessDenied()
         {
             return View();

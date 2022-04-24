@@ -5,10 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Utilities;
+using WebPanel.Filters;
 
 namespace WebPanel.Controllers
 {
-    //[Authorize]
     public class HomeController : Controller
     {
         private readonly IUnitOfWorkRepository _context;
@@ -17,6 +17,8 @@ namespace WebPanel.Controllers
         {
             this._context = context;
         }
+
+        [CustomAuthorization(permision: "25A67B3C-EAB9-45FF-A4CE-DF63B627C64F")]
         public IActionResult Index()
         {
             new PermisionManager().SetPermisions(_context);
@@ -24,6 +26,7 @@ namespace WebPanel.Controllers
             return View(res);
         }
 
+        [CustomAuthorization(permision: "AB7826A4-C5A3-4462-BFC7-841B1D7A918F")]
         public IActionResult Test()
         {
             Response.StatusCode = 404;
