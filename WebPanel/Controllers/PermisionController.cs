@@ -14,7 +14,6 @@ using WebPanel.ViewModels.Permision;
 
 namespace WebPanel.Controllers
 {
-    [Authorize(Roles = "admin")]
     public class PermisionController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
