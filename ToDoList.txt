@@ -26,6 +26,9 @@
 -> Authorizaion in layout
 -> Globalization
 -> Change custom authorizaion to work with  role name
+-> Unit test
+-> Correct "select" option in action items
+-> Design forms (that arent designed!!)
 
 
 
