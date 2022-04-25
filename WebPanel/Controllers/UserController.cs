@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Utilities;
+using WebPanel.Filters;
 using WebPanel.ViewModels;
 
 namespace WebPanel.Controllers
@@ -21,7 +23,7 @@ namespace WebPanel.Controllers
             this._roleManager = roleManager;
         }
 
-
+        [CustomAuthorization(permision: PermisionManager.Permisions.User_Index_HttpGet)]
         public async Task<IActionResult> Index()
         {
             var newUser = new ApplicationUser
@@ -53,12 +55,14 @@ namespace WebPanel.Controllers
 
         #region Create
 
+        [CustomAuthorization(permision: PermisionManager.Permisions.User_Create_HttpGet)]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        [CustomAuthorization(permision: PermisionManager.Permisions.User_Create_HttpPost)]
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
@@ -108,6 +112,7 @@ namespace WebPanel.Controllers
         #region Create UserRole
 
         [HttpGet]
+        [CustomAuthorization(permision: PermisionManager.Permisions.User_CreateUserRole_HttpGet)]
         public async Task<IActionResult> CreateUserRole(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -140,6 +145,7 @@ namespace WebPanel.Controllers
         }
 
         [HttpPost]
+        [CustomAuthorization(permision: PermisionManager.Permisions.User_CreateUserRole_HttpPost)]
         public async Task<IActionResult> CreateUserRole(UserRoleViewModel model)
         {
             var user = await _userManager.FindByIdAsync(model.userId);

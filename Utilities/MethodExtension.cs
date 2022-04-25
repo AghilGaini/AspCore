@@ -98,7 +98,7 @@ namespace Utilities
                 return true;
             }
         }
-        public static bool? ToNullableBool(this object o)
+        public static bool? ToNullableBoolean(this object o)
         {
             try
             {
@@ -109,11 +109,11 @@ namespace Utilities
                 return null;
             }
         }
-        public static bool ToBool(this object o)
+        public static bool ToBoolean(this object o)
         {
             try
             {
-                return o.ToBool();
+                return Convert.ToBoolean(o);
             }
             catch
             {

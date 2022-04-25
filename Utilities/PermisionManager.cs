@@ -33,6 +33,14 @@ namespace Utilities
             public const string Test_Index_HttpGet = "7785109F-C308-4A7B-A46A-DFDC845A56DD";
             #endregion
 
+            #region UserController
+            public const string User_Index_HttpGet = "464446D9-9291-4451-91C6-CD8E707CF69E";
+            public const string User_Create_HttpGet = "6B2F6298-5E60-4ABD-9DB9-2E7430FDC391";
+            public const string User_Create_HttpPost = "DCB158BE-24FA-4A95-B976-852F0D1C8ED2";
+            public const string User_CreateUserRole_HttpGet = "298854A5-C897-4090-9636-A34165813C70";
+            public const string User_CreateUserRole_HttpPost = "D59F036F-2170-4E2A-92AB-5C6DBE57CB93";
+            #endregion
+
             #region RoleController
             public const string Role_Index_HttpGet = "E9B11EE6-22A7-4CB4-B1AF-A59F20FD7C57";
             public const string Role_Create_HttpGet = "33ED3712-2D21-481F-AFB2-032AAFB68B9C";

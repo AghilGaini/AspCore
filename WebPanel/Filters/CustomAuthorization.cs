@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Collections.Generic;
 using System.Linq;
+using Utilities;
 
 namespace WebPanel.Filters
 {
@@ -61,6 +62,9 @@ namespace WebPanel.Filters
 
             var userIdentity = _users.FirstOrDefault(r => r.UserName == user.Identity.Name);
             if (userIdentity == null)
+                return;
+
+            if (userIdentity.IsAdmin.ToBoolean())
                 return;
 
             var roleNames = _userManager.GetRolesAsync(userIdentity).Result;
