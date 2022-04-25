@@ -14,14 +14,14 @@ namespace WebPanel.Controllers
             this._logger = logger;
         }
 
-        [CustomAuthorization(permision: "7785109F-C308-4A7B-A46A-DFDC845A56DD")]
+        [CustomAuthorization(permision: PermisionManager.Permisions.Test_Index_HttpGet)]
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
-        [CustomAuthorization(permision: "4C529D65-E442-4CFE-9388-6B4F42C96B5C")]
+        [CustomAuthorization(permision: PermisionManager.Permisions.Test_Index_HttpPost)]
         [HttpPost]
         public IActionResult Index(int i)
         {

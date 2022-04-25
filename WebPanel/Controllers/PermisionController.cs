@@ -1,5 +1,6 @@
 ﻿using Database.Domain.Entities;
 using Database.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,10 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Utilities;
+using WebPanel.Filters;
 using WebPanel.ViewModels.Permision;
 
 namespace WebPanel.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class PermisionController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -23,6 +27,9 @@ namespace WebPanel.Controllers
             this._unitOfWorkRepository = unitOfWorkRepository;
         }
 
+
+        [HttpGet]
+        [CustomAuthorization(permision: PermisionManager.Permisions.Permision_Index_HttpGet)]
         public async Task<IActionResult> Index(string roleId)
         {
             var role = await _roleManager.FindByIdAsync(roleId);
@@ -72,6 +79,7 @@ namespace WebPanel.Controllers
         }
 
         [HttpPost]
+        [CustomAuthorization(permision: PermisionManager.Permisions.Permision_Index_HttpPost)]
         public async Task<IActionResult> Index(RolePermisionViewModel model)
         {
             var role = await _roleManager.FindByIdAsync(model.RoleId);

@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Utilities;
+using WebPanel.Filters;
 using WebPanel.ViewModels;
 
 namespace WebPanel.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class RoleController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -18,6 +22,8 @@ namespace WebPanel.Controllers
             this._roleManager = roleManager;
             this._userManager = userManager;
         }
+
+        [CustomAuthorization(permision: PermisionManager.Permisions.Role_Index_HttpGet)]
         public async Task<IActionResult> Index()
         {
             if (!_roleManager.Roles.Any(r => r.Name == "admin"))
@@ -52,12 +58,14 @@ namespace WebPanel.Controllers
         }
 
         [HttpGet]
+        [CustomAuthorization(permision: PermisionManager.Permisions.Role_Create_HttpGet)]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [CustomAuthorization(permision: PermisionManager.Permisions.Role_Create_HttpPost)]
         public async Task<IActionResult> Create(CreateRoleViewModel model)
         {
             if (ModelState.IsValid)
@@ -92,6 +100,7 @@ namespace WebPanel.Controllers
         }
 
         [HttpGet]
+        [CustomAuthorization(permision: PermisionManager.Permisions.Role_CreateRoleUser_HttpGet)]
         public async Task<IActionResult> CreateRoleUser(string roleId)
         {
             var role = await _roleManager.FindByIdAsync(roleId);
@@ -121,6 +130,7 @@ namespace WebPanel.Controllers
         }
 
         [HttpPost]
+        [CustomAuthorization(permision: PermisionManager.Permisions.Role_CreateRoleUser_HttpPost)]
         public async Task<IActionResult> CreateRoleUser(RoleUserViewModel model)
         {
             var role = await _roleManager.FindByIdAsync(model.RoleId);

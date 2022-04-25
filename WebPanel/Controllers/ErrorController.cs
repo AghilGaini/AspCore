@@ -34,6 +34,7 @@ namespace WebPanel.Controllers
         }
 
         [Route("Error")]
+        [AllowAnonymous]
         public IActionResult Error()
         {
             var exceptionDetails = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
