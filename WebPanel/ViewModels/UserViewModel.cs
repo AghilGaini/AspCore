@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DatabaseAccess.EFCore.Models;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
 namespace WebPanel.ViewModels
@@ -7,7 +8,7 @@ namespace WebPanel.ViewModels
     {
         public UserViewModel()
         {
-            Users = new List<IdentityUser>();
+            Users = new List<ApplicationUser>();
             Actions = new List<ActionItem>()
             {
                  new ActionItem()
@@ -16,7 +17,7 @@ namespace WebPanel.ViewModels
                  }
             };
         }
-        public List<IdentityUser> Users { get; set; }
+        public List<ApplicationUser> Users { get; set; }
         public List<ActionItem> Actions { get; set; }
     }
     public class ActionItem

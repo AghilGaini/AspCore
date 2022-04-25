@@ -15,11 +15,13 @@
 ** Coding in linux
 ------------------priority------------
 -> Centralised exception handling   ***
--> Claim based permisions
+-> Claim based permisions ***
 -> Logging system   ***
--> Custom config for logging system 
+-> Custom config for logging system ***
 -> ClientSide validation
 -> popup and implement ajax instead of post requests
+-> pagination grid
+-> Extend Custom user identity and change authorization logic (adaptive to admin users)
 
 
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DatabaseAccess.EFCore.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace WebPanel.Controllers
 {
     public class UserController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserController(UserManager<IdentityUser> userManager,
+        public UserController(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             this._userManager = userManager;
@@ -23,7 +24,7 @@ namespace WebPanel.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var newUser = new IdentityUser
+            var newUser = new ApplicationUser
             {
                 UserName = "aghil",
                 Email = "aghil1373@gmail.com",
@@ -69,7 +70,7 @@ namespace WebPanel.Controllers
                     user = await _userManager.FindByNameAsync(model.UserName);
                     if (user == null)
                     {
-                        user = new IdentityUser()
+                        user = new ApplicationUser()
                         {
                             Email = model.Email,
                             UserName = model.UserName

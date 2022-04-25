@@ -1,5 +1,6 @@
 using Database.Domain.Interfaces;
 using DatabaseAccess.EFCore;
+using DatabaseAccess.EFCore.Models;
 using DatabaseAccess.EFCore.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -41,7 +42,7 @@ namespace WebPanel
 
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("AppCoreDB")));
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationContext>();
 
             services.AddMvc(options =>

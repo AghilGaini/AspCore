@@ -1,4 +1,5 @@
 ﻿using Database.Domain.Interfaces;
+using DatabaseAccess.EFCore.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +12,11 @@ namespace WebPanel.Filters
     public class CustomAuthorization : AuthorizeAttribute, IAuthorizationFilter
     {
         private readonly string _permision;
-        private static UserManager<IdentityUser> _userManager;
+        private static UserManager<ApplicationUser> _userManager;
         private static RoleManager<IdentityRole> _roleManager;
         private static IUnitOfWorkRepository _unitOfWorkRepository;
         private static List<IdentityRole> _roles;
-        private static List<IdentityUser> _users;
+        private static List<ApplicationUser> _users;
 
         public CustomAuthorization(string permision)
         {
@@ -29,7 +30,7 @@ namespace WebPanel.Filters
             #region Initial
 
             //if (_userManager == null)
-            _userManager = (UserManager<IdentityUser>)services.GetService(typeof(UserManager<IdentityUser>));
+            _userManager = (UserManager<ApplicationUser>)services.GetService(typeof(UserManager<ApplicationUser>));
 
             //if (_roleManager == null)
             _roleManager = (RoleManager<IdentityRole>)services.GetService(typeof(RoleManager<IdentityRole>));
