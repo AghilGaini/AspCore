@@ -13,7 +13,10 @@ namespace WebPanel.ViewModels
             {
                  new ActionItem()
                  {
-                      Title = "Select"
+                      Title = "Select",
+                      Action ="",
+                      Controller="",
+                      Route = ""
                  }
             };
         }

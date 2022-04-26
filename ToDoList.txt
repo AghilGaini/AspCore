@@ -18,18 +18,20 @@
 -> Claim based permisions ***
 -> Logging system   ***
 -> Custom config for logging system ***
+-> Extend Custom user identity and change authorization logic (adaptive to admin users)  ***
+-> Change custom authorizaion to work with  role name  ***
+
 -> ClientSide validation
 -> popup and implement ajax instead of post requests
 -> pagination grid
--> Extend Custom user identity and change authorization logic (adaptive to admin users)  ***
 -> Database frist 
 -> Authorizaion in layout
 -> Globalization
--> Change custom authorizaion to work with  role name
 -> Unit test
 -> Correct "select" option in action items
 -> Design forms (that arent designed!!)
-
+-> Log all requested contollers and actions
+-> 
 
 
 
