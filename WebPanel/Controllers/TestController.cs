@@ -14,7 +14,7 @@ namespace WebPanel.Controllers
             this._logger = logger;
         }
 
-        [CustomAuthorization(permision: PermisionManager.Permisions.Test_Index_HttpGet)]
+        [CustomAuthorization(permision: PermisionManager.Permisions.Test_Index_HttpGet, rolesName: "Basic")]
         [HttpGet]
         public IActionResult Index()
         {

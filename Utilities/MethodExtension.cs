@@ -85,6 +85,17 @@ namespace Utilities
                 return true;
             }
         }
+        public static bool IsNotNull(this object o)
+        {
+            try
+            {
+                return !(o == null);
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public static bool IsNull(this string s)
         {
             try
@@ -96,6 +107,19 @@ namespace Utilities
             catch
             {
                 return true;
+            }
+        }
+        public static bool IsNotNull(this string s)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(s) || string.IsNullOrWhiteSpace(s))
+                    return false;
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
         public static bool? ToNullableBoolean(this object o)
@@ -114,6 +138,20 @@ namespace Utilities
             try
             {
                 return Convert.ToBoolean(o);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool IsEqual(this string s, string s1, bool caseSensistive = false)
+        {
+            try
+            {
+                if (caseSensistive)
+                    return string.Equals(s, s1, StringComparison.Ordinal);
+                else
+                    return string.Equals(s, s1, StringComparison.OrdinalIgnoreCase);
             }
             catch
             {
