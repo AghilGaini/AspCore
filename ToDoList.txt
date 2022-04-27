@@ -31,7 +31,9 @@
 -> Correct "select" option in action items
 -> Design forms (that arent designed!!)
 -> Log all requested contollers and actions
--> 
+-> Is this required to impement new classes for interfaces in UnitOfWorkRepository class ??!
+-> check any duplicate in students insert
+-> how find the record with column name in EFcore qurey ? (for examle in GetByID in base class)
 
 
 

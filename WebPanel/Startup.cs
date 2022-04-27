@@ -35,8 +35,8 @@ namespace WebPanel
             #region Repositories
 
             services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
-            services.AddScoped<ICityRepository, CityRepository>();
-            services.AddScoped<IPermisionRepository, PermisionRepository>();
+            //services.AddScoped<ICityRepository, CityRepository>();
+            //services.AddScoped<IPermisionRepository, PermisionRepository>();
 
             #endregion
 

@@ -11,6 +11,7 @@ namespace Database.Domain.Interfaces
         ICityRepository _cityRepository { get; }
         IPermisionRepository _permisionRepository { get; }
         IRolePermisionRepository _rolePermisionRepository { get; }
+        IStudentRepositroy _studentRepositroy { get; }
         void Complete();
     }
 }

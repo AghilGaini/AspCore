@@ -54,6 +54,10 @@ namespace Utilities
             public const string Permision_Index_HttpGet = "66813E4C-7204-4948-AA93-E4C9D4568416";
             #endregion
 
+            #region StudentController
+            public const string Student_Index_HttpGet = "ADDB26FC-8E7B-4B7D-8432-536D5BBF9347";
+
+            #endregion
 
         }
 

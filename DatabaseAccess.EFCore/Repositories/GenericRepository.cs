@@ -36,7 +36,7 @@ namespace DatabaseAccess.EFCore.Repositories
             return _context.Set<T>();
         }
 
-        public T GetByID(int id)
+        public T GetByID(long id)
         {
             return _context.Set<T>().Find(id);
         }
