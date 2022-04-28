@@ -6,10 +6,18 @@
 <table class="table table-dark" style="margin-top:5%">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>NationalCode</th>
-            <th>Age</th>
-            <th>Actions</th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSortParam">Name</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.NationalCodeSortParam">NationalCode</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.AgeSortParam">Age</a>
+            </th>
+            <th>
+                Actions
+            </th>
         </tr>
     </thead>
     <tbody>

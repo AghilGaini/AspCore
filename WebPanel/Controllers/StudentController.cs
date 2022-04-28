@@ -21,11 +21,37 @@ namespace WebPanel.Controllers
 
         [CustomAuthorization(permision: PermisionManager.Permisions.Student_Index_HttpGet)]
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
+
+            ViewBag.NameSortParam = sortOrder.IsNull() ? "name_desc" : "";
+            ViewBag.NationalCodeSortParam = sortOrder == "nationalCode" ? "nationalCode_desc" : "nationalCode";
+            ViewBag.AgeSortParam = sortOrder == "age" ? "age_desc" : "age";
             var res = new StudentViewModel();
 
-            res.Students = _unitOfWork._studentRepositroy.GetAll().ToList();
+
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    res.Students = _unitOfWork._studentRepositroy.GetAll().OrderByDescending(r => r.Name).ToList();
+                    break;
+                case "nationalCode":
+                    res.Students = _unitOfWork._studentRepositroy.GetAll().OrderBy(r => r.NationalCode).ToList();
+                    break;
+                case "nationalCode_desc":
+                    res.Students = _unitOfWork._studentRepositroy.GetAll().OrderByDescending(r => r.NationalCode).ToList();
+                    break;
+                case "age":
+                    res.Students = _unitOfWork._studentRepositroy.GetAll().OrderBy(r => r.Age).ToList();
+                    break;
+                case "age_desc":
+                    res.Students = _unitOfWork._studentRepositroy.GetAll().OrderByDescending(r => r.Age).ToList();
+                    break;
+                default:
+                    res.Students = _unitOfWork._studentRepositroy.GetAll().OrderBy(r => r.Name).ToList();
+                    break;
+            }
 
             res.Actions.Add(new ActionItem()
             {

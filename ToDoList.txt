@@ -21,9 +21,10 @@
 -> Extend Custom user identity and change authorization logic (adaptive to admin users)  ***
 -> Change custom authorizaion to work with  role name  ***
 
+-> pagination grid
+??? whats is TolistAsync and AsNoTracking
 -> ClientSide validation
 -> popup and implement ajax instead of post requests
--> pagination grid
 -> Database frist 
 -> Authorizaion in layout
 -> Globalization
@@ -34,7 +35,9 @@
 -> Is this required to impement new classes for interfaces in UnitOfWorkRepository class ??!
 -> check any duplicate in students insert
 -> how find the record with column name in EFcore qurey ? (for examle in GetByID in base class)
-
+-> Read about HTML tag helper
+-> Customize Error exception (show in toast)
+-> Third party login
 
 
 
