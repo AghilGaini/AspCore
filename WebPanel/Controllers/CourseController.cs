@@ -28,12 +28,15 @@ namespace WebPanel.Controllers
             return View(res);
         }
 
+        #region Create
+        [CustomAuthorization(permision: PermisionManager.Permisions.Course_Create_HttpGet)]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        [CustomAuthorization(permision: PermisionManager.Permisions.Course_Create_HttpPost)]
         [HttpPost]
         public IActionResult Create(CourseDomain model)
         {
@@ -55,6 +58,7 @@ namespace WebPanel.Controllers
 
             return View();
         }
+        #endregion
 
     }
 }

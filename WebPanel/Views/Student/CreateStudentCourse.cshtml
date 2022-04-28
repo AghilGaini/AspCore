@@ -1,0 +1,39 @@
+﻿@model WebPanel.ViewModels.Student.CreateStudentCourseViewModel
+@{
+    ViewBag.Title = "Manage Courses";
+}
+
+<h3>Manage Courses : @ViewBag.StudentName</h3>
+
+<form method="post" asp-action="CreateStudentCourse">
+    <input asp-for="StudentId" type="hidden" />
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>IsSelected</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.CourseInfos.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input asp-for="@Model.CourseInfos[i].Title" type="hidden">
+                        <input asp-for="@Model.CourseInfos[i].CourseId" type="hidden">
+                        @Model.CourseInfos[i].Title
+                    </td>
+                    <td>
+                        <input asp-for="@Model.CourseInfos[i].IsSelected">
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-action="Index" asp-controller="Student" class="btn btn-danger">
+        Cancel
+    </a>
+</form>
+
+

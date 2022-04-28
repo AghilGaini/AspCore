@@ -1,6 +1,7 @@
 ﻿using Database.Domain.Entities;
 using Database.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 using Utilities;
 using WebPanel.Filters;
@@ -36,6 +37,7 @@ namespace WebPanel.Controllers
             return View(res);
         }
 
+        #region Create
         [CustomAuthorization(permision: PermisionManager.Permisions.Student_Create_HttpGet)]
         [HttpGet]
         public IActionResult Create()
@@ -69,6 +71,82 @@ namespace WebPanel.Controllers
 
             return View();
         }
+        #endregion
+
+        #region CreateStudentCourse
+        [CustomAuthorization(permision: PermisionManager.Permisions.Student_CreateStudentCourse_HttpGet)]
+        [HttpGet]
+        public IActionResult CreateStudentCourse(long studentId)
+        {
+            var student = _unitOfWork._studentRepositroy.GetByID(studentId);
+            if (student.IsNull())
+                throw new System.Exception("Student not found");
+
+            var allCourses = _unitOfWork._courseRepository.GetAll().ToList();
+            var studentCourses = _unitOfWork._studentCourseRepository.GetByStudentId(studentId);
+
+            var res = new CreateStudentCourseViewModel()
+            {
+                StudentId = studentId
+            };
+
+            foreach (var item in allCourses)
+            {
+                if (studentCourses.Any(r => r.CourseId == item.Id))
+                {
+                    res.CourseInfos.Add(new CourseInfo()
+                    {
+                        CourseId = item.Id,
+                        Title = item.Title,
+                        IsSelected = true
+                    });
+                }
+                else
+                {
+                    res.CourseInfos.Add(new CourseInfo()
+                    {
+                        CourseId = item.Id,
+                        Title = item.Title,
+                        IsSelected = false
+                    });
+                }
+            }
+
+            ViewBag.StudentName = student.Name;
+            return View(res);
+        }
+
+        [CustomAuthorization(permision: PermisionManager.Permisions.Student_CreateStudentCourse_HttpPost)]
+        [HttpPost]
+        public IActionResult CreateStudentCourse(CreateStudentCourseViewModel model)
+        {
+            var student = _unitOfWork._studentRepositroy.GetByID(model.StudentId);
+            if (student.IsNull())
+                throw new System.Exception("student not found");
+
+            var allStudentCourses = _unitOfWork._studentCourseRepository.GetByStudentId(student.Id);
+            _unitOfWork._studentCourseRepository.RemoveRange(allStudentCourses);
+
+            var newStudentCourses = new List<StudentCourseDomain>();
+
+            foreach (var item in model.CourseInfos)
+            {
+                if (!item.IsSelected)
+                    continue;
+                newStudentCourses.Add(new StudentCourseDomain()
+                {
+                    CourseId = item.CourseId,
+                    StudentId = student.Id
+                });
+            }
+            _unitOfWork._studentCourseRepository.AddRange(newStudentCourses);
+            _unitOfWork.Complete();
+
+            return RedirectToAction("Index", "Student");
+        }
+
+        #endregion
+
 
     }
 }

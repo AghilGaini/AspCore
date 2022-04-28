@@ -13,6 +13,7 @@ namespace Database.Domain.Interfaces
         IRolePermisionRepository _rolePermisionRepository { get; }
         IStudentRepositroy _studentRepositroy { get; }
         ICourseRepository _courseRepository { get; }
+        IStudentCourseRepository _studentCourseRepository { get; }
         void Complete();
     }
 }

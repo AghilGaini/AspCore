@@ -55,10 +55,14 @@ namespace Utilities
             public const string Student_Index_HttpGet = "ADDB26FC-8E7B-4B7D-8432-536D5BBF9347";
             public const string Student_Create_HttpGet = "4810303A-4A23-42E5-A7F7-6682C1EF5F47";
             public const string Student_Create_HttpPost = "E18733AC-318B-4C22-A004-54215E9ED8AE";
+            public const string Student_CreateStudentCourse_HttpGet = "5F918D75-B3DC-4FBB-876E-32B498D15F31";
+            public const string Student_CreateStudentCourse_HttpPost = "67992D62-A85B-46F8-A6DD-08ED2864A533";
             #endregion
 
             #region CourseController
             public const string Course_Index_HttpGet = "76DC5DF5-A0D9-4B7D-8177-5F3188955835";
+            public const string Course_Create_HttpGet = "9B5CDCBF-6577-47F7-B643-9BD0607FA345";
+            public const string Course_Create_HttpPost = "1CA91E93-0762-4F96-9AF7-84DA0D8FF333";
             #endregion
 
         }
