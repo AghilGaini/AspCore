@@ -1,0 +1,44 @@
+﻿@model WebPanel.ViewModels.Course.CourseViewModel
+@{
+    ViewBag.Title = "Course Page";
+}
+
+<table class="table table-dark" style="margin-top:5%">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Courses)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Actions
+                    </button>
+                    <div class="dropdown-menu shadow animated--grow-in">
+                        @foreach (var link in Model.Actions)
+                        {
+                            <a style='margin-right:16px' class="dropdown-item"
+                       asp-controller="@link.Controller" asp-action="@link.Action" asp-route-studentId="@item.Id">
+                                <i class="fas fa-wrench"></i> @link.Title
+                            </a>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Create" asp-controller="Course" class="btn btn-primary">
+        Create New Course
+    </a>
+</div>
+
+

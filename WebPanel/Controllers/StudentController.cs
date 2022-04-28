@@ -36,6 +36,7 @@ namespace WebPanel.Controllers
             return View(res);
         }
 
+        [CustomAuthorization(permision: PermisionManager.Permisions.Student_Create_HttpGet)]
         [HttpGet]
         public IActionResult Create()
         {
@@ -43,6 +44,7 @@ namespace WebPanel.Controllers
             return View();
         }
 
+        [CustomAuthorization(permision: PermisionManager.Permisions.Student_Create_HttpPost)]
         [HttpPost]
         public IActionResult Create(StudentDomain model)
         {
@@ -54,6 +56,9 @@ namespace WebPanel.Controllers
                     Age = model.Age,
                     NationalCode = model.NationalCode
                 };
+
+                if (_unitOfWork._studentRepositroy.IsDuplicateNationalCode(newStudent))
+                    throw new System.Exception("Duplicate NationcalNumber");
 
                 _unitOfWork._studentRepositroy.Add(newStudent);
                 _unitOfWork.Complete();

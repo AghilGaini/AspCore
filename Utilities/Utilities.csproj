@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DatabaseAccess.EFCore\DatabaseAccess.EFCore.csproj" />
+    <Folder Include="Inerfaces\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Inerfaces\" />
+    <ProjectReference Include="..\Database.Domain\Database.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,5 @@
 ﻿using Database.Domain.Entities;
 using Database.Domain.Interfaces;
-using DatabaseAccess.EFCore;
-using DatabaseAccess.EFCore.Repositories;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +53,12 @@ namespace Utilities
 
             #region StudentController
             public const string Student_Index_HttpGet = "ADDB26FC-8E7B-4B7D-8432-536D5BBF9347";
+            public const string Student_Create_HttpGet = "4810303A-4A23-42E5-A7F7-6682C1EF5F47";
+            public const string Student_Create_HttpPost = "E18733AC-318B-4C22-A004-54215E9ED8AE";
+            #endregion
 
+            #region CourseController
+            public const string Course_Index_HttpGet = "76DC5DF5-A0D9-4B7D-8177-5F3188955835";
             #endregion
 
         }

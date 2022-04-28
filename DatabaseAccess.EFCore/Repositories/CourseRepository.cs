@@ -5,21 +5,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilities;
 
 namespace DatabaseAccess.EFCore.Repositories
 {
-    public class StudentRepository : GenericRepository<StudentDomain>, IStudentRepositroy
+    public class CourseRepository : GenericRepository<CourseDomain>, ICourseRepository
     {
         private readonly ApplicationContext _context;
 
-        public StudentRepository(ApplicationContext context) : base(context)
+        public CourseRepository(ApplicationContext context) : base(context)
         {
             this._context = context;
         }
 
-        public bool IsDuplicateNationalCode(StudentDomain studentDomain)
+        public bool IsDuplicateTitle(CourseDomain course)
         {
-            return _context.Students.Where(r => r.NationalCode == studentDomain.NationalCode && r.Id != studentDomain.Id).Any();
+            return _context.Courses.Where(r => r.Title== course.Title && r.Id != course.Id).Any();
         }
     }
 }

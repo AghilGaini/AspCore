@@ -20,5 +20,6 @@ namespace DatabaseAccess.EFCore
         public DbSet<PermisionDomain> Permisions { get; set; }
         public DbSet<RolePermisionDomain> RolePermisions { get; set; }
         public DbSet<StudentDomain> Students { get; set; }
+        public DbSet<CourseDomain> Courses { get; set; }
     }
 }

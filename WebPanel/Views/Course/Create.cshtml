@@ -1,0 +1,21 @@
+﻿@model CourseDomain
+@{
+    ViewBag.Title = "Create Course";
+}
+
+<form method="post" asp-action="Create" asp-controller="Course">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row">
+        <label asp-for="Title" class="col-6"></label>
+        <input asp-for="Title" class="col-6" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" asp-controller="Course" class="btn btn-danger">
+        Cancel
+    </a>
+</form>
+
+

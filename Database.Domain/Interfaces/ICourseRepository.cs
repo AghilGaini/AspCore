@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Database.Domain.Interfaces
 {
-    public interface IStudentRepositroy : IGenericRepository<StudentDomain>
+    public interface ICourseRepository : IGenericRepository<CourseDomain>
     {
-        bool IsDuplicateNationalCode(StudentDomain studentDomain);
+        bool IsDuplicateTitle(CourseDomain course);
     }
 }

@@ -19,6 +19,8 @@ namespace DatabaseAccess.EFCore.Repositories
 
         public IStudentRepositroy _studentRepositroy { get; set; }
 
+        public ICourseRepository _courseRepository { get; set; }
+
         public UnitOfWorkRepository(ApplicationContext context)
         {
             this._context = context;
@@ -26,6 +28,7 @@ namespace DatabaseAccess.EFCore.Repositories
             _permisionRepository = new PermisionRepository(context);
             _rolePermisionRepository = new RolePermisionRepository(context);
             _studentRepositroy = new StudentRepository(context);
+            _courseRepository = new CourseRepository(context);
         }
 
         public void Complete()

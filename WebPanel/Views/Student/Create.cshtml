@@ -13,17 +13,19 @@
     </div>
     <div class="row">
         <label asp-for="NationalCode" class="col-6"></label>
-        <input asp-for="NationalCode" class="col-6"/>
+        <input asp-for="NationalCode" class="col-6" />
         <span asp-validation-for="NationalCode" class="text-danger"></span>
     </div>
     <div class="row">
         <label asp-for="Age" class="col-6"></label>
-        <input asp-for="Age" class="col-6"/>
+        <input asp-for="Age" class="col-6" />
         <span asp-validation-for="Age" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Create</button>
-
+    <a asp-action="Index" asp-controller="Student" class="btn btn-danger">
+        Cancel
+    </a>
 </form>
 
 
