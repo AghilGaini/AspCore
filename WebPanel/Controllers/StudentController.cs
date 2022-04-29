@@ -19,39 +19,60 @@ namespace WebPanel.Controllers
             this._unitOfWork = unitOfWork;
         }
 
+        #region Index
+
         [CustomAuthorization(permision: PermisionManager.Permisions.Student_Index_HttpGet)]
         [HttpGet]
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index(string sortOrder, string txtStudentName, string txtNationalCode, int nuAge)
         {
 
             ViewBag.NameSortParam = sortOrder.IsNull() ? "name_desc" : "";
             ViewBag.NationalCodeSortParam = sortOrder == "nationalCode" ? "nationalCode_desc" : "nationalCode";
             ViewBag.AgeSortParam = sortOrder == "age" ? "age_desc" : "age";
+
+            var students = _unitOfWork._studentRepositroy.GetAll();
+
             var res = new StudentViewModel();
 
-
-
+            #region Sorting
             switch (sortOrder)
             {
                 case "name_desc":
-                    res.Students = _unitOfWork._studentRepositroy.GetAll().OrderByDescending(r => r.Name).ToList();
+                    students = students.OrderByDescending(r => r.Name);
                     break;
                 case "nationalCode":
-                    res.Students = _unitOfWork._studentRepositroy.GetAll().OrderBy(r => r.NationalCode).ToList();
+                    students = students.OrderBy(r => r.NationalCode);
                     break;
                 case "nationalCode_desc":
-                    res.Students = _unitOfWork._studentRepositroy.GetAll().OrderByDescending(r => r.NationalCode).ToList();
+                    students = students.OrderByDescending(r => r.NationalCode);
                     break;
                 case "age":
-                    res.Students = _unitOfWork._studentRepositroy.GetAll().OrderBy(r => r.Age).ToList();
+                    students = students.OrderBy(r => r.Age);
                     break;
                 case "age_desc":
-                    res.Students = _unitOfWork._studentRepositroy.GetAll().OrderByDescending(r => r.Age).ToList();
+                    students = students.OrderByDescending(r => r.Age);
                     break;
                 default:
-                    res.Students = _unitOfWork._studentRepositroy.GetAll().OrderBy(r => r.Name).ToList();
+                    students = students.OrderBy(r => r.Name);
                     break;
             }
+            #endregion
+
+            #region Filtering
+
+            if (txtStudentName.IsNotNull())
+                students = students.Where(r => r.Name.Contains(txtStudentName));
+
+            if (txtNationalCode.IsNotNull())
+                students = students.Where(r => r.NationalCode == txtNationalCode);
+
+            if (nuAge > 0)
+                students = students.Where(r => r.Age == nuAge);
+
+            #endregion
+
+
+            res.Students = students.ToList();
 
             res.Actions.Add(new ActionItem()
             {
@@ -62,6 +83,8 @@ namespace WebPanel.Controllers
 
             return View(res);
         }
+
+        #endregion
 
         #region Create
         [CustomAuthorization(permision: PermisionManager.Permisions.Student_Create_HttpGet)]

@@ -38,6 +38,9 @@
 -> Read about HTML tag helper
 -> Customize Error exception (show in toast)
 -> Third party login
+-> Auto Sync Database at the running project
+-> skip and take in EFCore
+-> number input should not accept negativ numbers nad check for null values instead of zero value
 
 
 
