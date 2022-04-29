@@ -74,6 +74,8 @@ namespace WebPanel.Controllers
 
             res.Students = students.ToList();
 
+            res.PaginatedStudents = new PaginatedList<StudentDomain>(students, 1, 1);
+
             res.Actions.Add(new ActionItem()
             {
                 Title = "Manage Courses",

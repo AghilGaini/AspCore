@@ -1,5 +1,6 @@
 ﻿using Database.Domain.Entities;
 using System.Collections.Generic;
+using Utilities;
 
 namespace WebPanel.ViewModels.Student
 {
@@ -16,7 +17,7 @@ namespace WebPanel.ViewModels.Student
                  }
             };
         }
-
+        public PaginatedList<StudentDomain> PaginatedStudents { get; set; }
         public List<StudentDomain> Students { get; set; }
         public List<ActionItem> Actions { get; set; }
     }
