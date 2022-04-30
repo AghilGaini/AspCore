@@ -12,11 +12,10 @@ namespace Utilities
         public int PageIndex { get; set; }
         public int TotalPages { get; set; }
         public int TotalCount { get; set; }
-
-        public int MinPage => TotalPages > 2 ? 2 : 1;
-        public int MaxPage => TotalPages;
-
-
+        public bool HasNext => PageIndex < TotalPages;
+        public int NextPage => PageIndex + 1;
+        public int PervoisPage => PageIndex - 1;
+        public bool HasPervious => PageIndex > 1;
         public PaginatedList(IEnumerable<T> source, int pageSize, int pageIndex)
         {
             PageSize = pageSize;

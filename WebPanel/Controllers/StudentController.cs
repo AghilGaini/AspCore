@@ -23,12 +23,13 @@ namespace WebPanel.Controllers
 
         [CustomAuthorization(permision: PermisionManager.Permisions.Student_Index_HttpGet)]
         [HttpGet]
-        public IActionResult Index(string sortOrder, string txtStudentName, string txtNationalCode, int nuAge)
+        public IActionResult Index(string sortOrder, string txtStudentName, string txtNationalCode, int nuAge, int? pageNumber)
         {
 
             ViewBag.NameSortParam = sortOrder.IsNull() ? "name_desc" : "";
             ViewBag.NationalCodeSortParam = sortOrder == "nationalCode" ? "nationalCode_desc" : "nationalCode";
             ViewBag.AgeSortParam = sortOrder == "age" ? "age_desc" : "age";
+            ViewBag.CurrentSortOrder = sortOrder;
 
             var students = _unitOfWork._studentRepositroy.GetAll();
 
@@ -61,20 +62,27 @@ namespace WebPanel.Controllers
             #region Filtering
 
             if (txtStudentName.IsNotNull())
+            {
                 students = students.Where(r => r.Name.Contains(txtStudentName));
+                ViewBag.txtStudentName = txtStudentName;
+            }
 
             if (txtNationalCode.IsNotNull())
+            {
                 students = students.Where(r => r.NationalCode == txtNationalCode);
-
+                ViewBag.txtNationalCode = txtNationalCode;
+            }
             if (nuAge > 0)
+            {
                 students = students.Where(r => r.Age == nuAge);
-
+                ViewBag.nuAge = nuAge;
+            }
             #endregion
 
 
             res.Students = students.ToList();
 
-            res.PaginatedStudents = new PaginatedList<StudentDomain>(students, 1, 1);
+            res.PaginatedStudents = new PaginatedList<StudentDomain>(students, 1, pageNumber ?? 1);
 
             res.Actions.Add(new ActionItem()
             {
