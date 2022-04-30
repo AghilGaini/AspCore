@@ -35,9 +35,7 @@ namespace WebPanel
             #region Repositories
 
             services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
-            //services.AddScoped<ICityRepository, CityRepository>();
-            //services.AddScoped<IPermisionRepository, PermisionRepository>();
-
+            services.AddScoped<IVwUserRolePermisionRepository, VwUserRolePermisionRepository>();
             #endregion
 
             services.AddDbContext<ApplicationContext>(options =>

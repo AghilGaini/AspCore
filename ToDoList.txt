@@ -20,9 +20,12 @@
 -> Custom config for logging system ***
 -> Extend Custom user identity and change authorization logic (adaptive to admin users)  ***
 -> Change custom authorizaion to work with  role name  ***
+-> pagination grid  ***
 
--> pagination grid
+
 ??? whats is TolistAsync and AsNoTracking
+
+-> Read from cache in layout aouthorize
 -> ClientSide validation
 -> popup and implement ajax instead of post requests
 -> Database frist 
@@ -40,7 +43,8 @@
 -> Third party login
 -> Auto Sync Database at the running project
 -> skip and take in EFCore
--> number input should not accept negativ numbers nad check for null values instead of zero value
+-> number input should not accept negative numbers nad check for null values instead of zero value
+-> Read about HTMX
 
 
 

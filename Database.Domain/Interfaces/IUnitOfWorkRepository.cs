@@ -14,6 +14,7 @@ namespace Database.Domain.Interfaces
         IStudentRepositroy _studentRepositroy { get; }
         ICourseRepository _courseRepository { get; }
         IStudentCourseRepository _studentCourseRepository { get; }
+        IVwUserRolePermisionRepository _vwUserRolePermisionRepository { get; }
         void Complete();
     }
 }

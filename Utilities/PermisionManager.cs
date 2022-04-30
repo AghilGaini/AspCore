@@ -14,6 +14,12 @@ namespace Utilities
 
         public static class Permisions
         {
+            #region MenuTitle
+            public const string Menu_University = "A7F5A32B-35BB-462C-8FED-5EC831F70949";
+            public const string Menu_Security = "A7F5A32B-35BB-462C-8FED-5EC831F70949";
+
+            #endregion
+
             #region AccountController
             public const string Account_Login_HttpPost = "D85202DC-4C79-4FA3-816C-BD4E03EF93CE";
             public const string Account_Login_HttpGet = "9CA368C5-8EE9-47C5-A601-A238CBE23FB1";

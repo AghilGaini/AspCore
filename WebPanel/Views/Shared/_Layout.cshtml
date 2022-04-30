@@ -1,4 +1,7 @@
-﻿@inject SignInManager<DatabaseAccess.EFCore.Models.ApplicationUser> _signInManager
+﻿@using Database.Domain.Interfaces
+@using Utilities
+@inject SignInManager<DatabaseAccess.EFCore.Models.ApplicationUser> _signInManager
+@inject IVwUserRolePermisionRepository userRolePermision
 <!DOCTYPE html>
 
 <html>
@@ -39,28 +42,47 @@
                 {
 
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="Index" asp-controller="Test">Test</a>
+                        @if (userRolePermision.HasUserPermision(User.Identity.Name, PermisionManager.Permisions.Test_Index_HttpGet))
+                        {
+                            <a class="nav-link" asp-action="Index" asp-controller="Test">Test</a>
+                        }
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            University
-                        </a>
+                        @if (userRolePermision.HasUserPermision(User.Identity.Name, PermisionManager.Permisions.Menu_University))
+                        {
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                University
+                            </a>
+                        }
                         <div class="dropdown-menu">
-
-                            <a class="dropdown-item" asp-action="Index" asp-controller="Student">Students</a>
-                            <a class="dropdown-item" asp-action="Index" asp-controller="Course">Courses</a>
+                            @if (userRolePermision.HasUserPermision(User.Identity.Name, PermisionManager.Permisions.Student_Index_HttpGet))
+                            {
+                                <a class="dropdown-item" asp-action="Index" asp-controller="Student">Students</a>
+                            }
+                            @if (userRolePermision.HasUserPermision(User.Identity.Name, PermisionManager.Permisions.Course_Index_HttpGet))
+                            {
+                                <a class="dropdown-item" asp-action="Index" asp-controller="Course">Courses</a>
+                            }
                         </div>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Security
-                        </a>
+                        @if (userRolePermision.HasUserPermision(User.Identity.Name, PermisionManager.Permisions.Menu_Security))
+                        {
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Security
+                            </a>
+                        }
                         <div class="dropdown-menu">
-
-                            <a class="dropdown-item" asp-action="Index" asp-controller="User">Users</a>
-                            <a class="dropdown-item" asp-action="Index" asp-controller="Role">Roles</a>
+                            @if (userRolePermision.HasUserPermision(User.Identity.Name, PermisionManager.Permisions.User_Index_HttpGet))
+                            {
+                                <a class="dropdown-item" asp-action="Index" asp-controller="User">Users</a>
+                            }
+                            @if (userRolePermision.HasUserPermision(User.Identity.Name, PermisionManager.Permisions.Role_Index_HttpGet))
+                            {
+                                <a class="dropdown-item" asp-action="Index" asp-controller="Role">Roles</a>
+                            }
                         </div>
                     </li>
                     <li class="nav-item">
