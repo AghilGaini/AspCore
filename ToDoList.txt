@@ -25,6 +25,7 @@
 
 ??? whats is TolistAsync and AsNoTracking
 
+-> Software cache system
 -> Read from cache in layout aouthorize
 -> ClientSide validation
 -> popup and implement ajax instead of post requests
