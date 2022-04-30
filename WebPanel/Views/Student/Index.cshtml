@@ -1,4 +1,5 @@
 ﻿@model WebPanel.ViewModels.Student.StudentViewModel
+@using Utilities
 @{
     ViewBag.Title = "Students Page";
 }
@@ -6,15 +7,8 @@
 <form asp-action="Index" method="get" class="form-inline">
     <div class="form-group">
         <label for="txtStudentName">StudentName:</label>
-        <input type="text" class="form-control" id="txtStudentName" placeholder="Student Name" name="txtStudentName" value="@ViewBag.txtStudentName" />
-    </div>
-    <div class="form-group">
-        <label for="txtNationalCode">NationalCode:</label>
-        <input type="text" class="form-control" id="txtNationalCode" placeholder="NationalCode" name="txtNationalCode" value="@ViewBag.txtNationalCode" />
-    </div>
-    <div class="form-group">
-        <label for="nuAge">Age:</label>
-        <input type="number" class="form-control" id="nuAge" placeholder="Age" name="nuAge" value="@ViewBag.nuAge" />
+        <input type="text" class="form-control" id="txtStudentName" placeholder="Student Name"
+               name="txtStudentName" value="@ViewBag.CurrentFilter" />
     </div>
     <button type="submit" class="btn btn-primary">Search</button>
 </form>
@@ -23,13 +17,13 @@
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSortParam">Name</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSortParam" asp-route-txtStudentName="@ViewBag.CurrentFilter">Name</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewBag.NationalCodeSortParam">NationalCode</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.NationalCodeSortParam" asp-route-txtStudentName="@ViewBag.CurrentFilter">NationalCode</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewBag.AgeSortParam">Age</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.AgeSortParam" asp-route-txtStudentName="@ViewBag.CurrentFilter">Age</a>
             </th>
             <th>
                 Actions
@@ -72,12 +66,16 @@
 
     <a asp-action="Index"
        asp-route-pageNumber="@Model.PaginatedStudents.PervoisPage"
+       asp-route-sortOrder="@ViewBag.CurrentSortOrder"
+       asp-route-txtStudentName="@ViewBag.CurrentFilter"
        class="btn btn-block @hasPerv">
         Perv
     </a>
 
     <a asp-action="Index"
        asp-route-pageNumber="@Model.PaginatedStudents.NextPage"
+       asp-route-sortOrder="@ViewBag.CurrentSortOrder"
+       asp-route-txtStudentName="@ViewBag.CurrentFilter"
        class="btn btn-block @hasNext">
         Next
     </a>
@@ -86,8 +84,6 @@
 </div>
 <div>
     <span>Current Page : @Model.PaginatedStudents.PageIndex</span>
-</div>
-<div>
     <span>Total Pages : @Model.PaginatedStudents.TotalPages</span>
 </div>
 

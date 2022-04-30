@@ -20,5 +20,9 @@ namespace WebPanel.ViewModels.Student
         public PaginatedList<StudentDomain> PaginatedStudents { get; set; }
         public List<StudentDomain> Students { get; set; }
         public List<ActionItem> Actions { get; set; }
+        public string FilterStudentName { get; set; }
+        public string FilterNationalCode { get; set; }
+        public int? FilterAge { get; set; }
+
     }
 }

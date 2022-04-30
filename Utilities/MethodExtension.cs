@@ -158,5 +158,30 @@ namespace Utilities
                 return false;
             }
         }
+        public static string GetValueFromQueryString(this string s, string key)
+        {
+            if (s == null)
+                return null;
+
+            if (!s.Contains(key))
+                return null;
+
+            s = s.Replace("?", string.Empty);
+            var values = s.Split('&');
+            foreach (var item in values)
+            {
+                if (item.Contains(key))
+                {
+                    var foundValues = item.Split('=');
+                    if (foundValues.Length > 1)
+                        return foundValues[1];
+                }
+            }
+
+            return null;
+
+        }
+
+
     }
 }
