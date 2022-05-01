@@ -2,13 +2,8 @@
 2-Check setPermision to save and remove based on value and title
 3-change logout action from get to post
 4-right navbar for login and logout
-5-Logging
-6-Centralised error handling 
-7-client side validation 
-8-claim based authorization 
-9-create popup
-
-
+5-client side validation 
+6-Start a function at the start of program
 
 ** Docker 
 ** Custome Logging
@@ -21,23 +16,21 @@
 -> Extend Custom user identity and change authorization logic (adaptive to admin users)  ***
 -> Change custom authorizaion to work with  role name  ***
 -> pagination grid  ***
+-> Create popup for requests
 
 
-??? whats is TolistAsync and AsNoTracking
-
+-> Pagination size for tables
+??? whats is TolistAsync and AsNoTracking??
+??? what is View Component??
 -> Software cache system
 -> Read from cache in layout aouthorize
 -> ClientSide validation
--> popup and implement ajax instead of post requests
--> Database frist 
--> Authorizaion in layout
+-> Database frist
 -> Globalization
 -> Unit test
 -> Correct "select" option in action items
 -> Design forms (that arent designed!!)
 -> Log all requested contollers and actions
--> Is this required to impement new classes for interfaces in UnitOfWorkRepository class ??!
--> check any duplicate in students insert
 -> how find the record with column name in EFcore qurey ? (for examle in GetByID in base class)
 -> Read about HTML tag helper
 -> Customize Error exception (show in toast)
