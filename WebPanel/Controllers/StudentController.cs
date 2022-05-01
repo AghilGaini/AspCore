@@ -72,11 +72,11 @@ namespace WebPanel.Controllers
             }
 
 
-                #endregion
+            #endregion
 
-                res.Students = students.ToList();
+            res.Students = students.ToList();
 
-            res.PaginatedStudents = new PaginatedList<StudentDomain>(students, 1, pageNumber ?? 1);
+            res.PaginatedStudents = new PaginatedList<StudentDomain>(students, 5, pageNumber ?? 1);
 
             res.Actions.Add(new ActionItem()
             {
@@ -95,8 +95,7 @@ namespace WebPanel.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-
-            return View();
+            return View("_StudentCreate", new StudentDomain());
         }
 
         [CustomAuthorization(permision: PermisionManager.Permisions.Student_Create_HttpPost)]
@@ -117,6 +116,8 @@ namespace WebPanel.Controllers
 
                 _unitOfWork._studentRepositroy.Add(newStudent);
                 _unitOfWork.Complete();
+
+                ViewBag.NewStudent = newStudent.Name;
 
                 return RedirectToAction("Index");
 

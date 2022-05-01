@@ -4,6 +4,7 @@
     ViewBag.Title = "Students Page";
 }
 
+
 <form asp-action="Index" method="get" class="form-inline">
     <div class="form-group">
         <label for="txtStudentName">StudentName:</label>
@@ -79,20 +80,16 @@
        class="btn btn-block @hasNext">
         Next
     </a>
-
-
 </div>
 <div>
     <span>Current Page : @Model.PaginatedStudents.PageIndex</span>
     <span>Total Pages : @Model.PaginatedStudents.TotalPages</span>
 </div>
 
-<div>
-    <a asp-action="Create" asp-controller="Student" class="btn btn-primary">
-        Create New Student
-    </a>
-</div>
+<a class="btn btn-primary" data-url="Create" data-toggle="modal" data-target="#createStudent" id="CreateUser">
+    Create User
+</a>
 
-
+@await Html.PartialAsync("_StudentCreate.cshtml",new StudentDomain())
 
 
