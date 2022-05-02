@@ -74,8 +74,6 @@ namespace WebPanel.Controllers
 
             #endregion
 
-            res.Students = students.ToList();
-
             res.PaginatedStudents = new PaginatedList<StudentDomain>(students, 5, pageNumber ?? 1);
 
             res.Actions.Add(new ActionItem()
