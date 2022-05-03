@@ -1,0 +1,12 @@
+1-correct routing in startup (not in every controller)
+2-output class 
+3-Log all api request
+4-Exception handeling
+
+Questiions : 
+-what is [ApiController] attribute ??
+
+
+Links ToRead : 
+-   https://docs.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-6.0
+-   https://code-maze.com/aspnetcore-webapi-best-practices/

@@ -18,9 +18,14 @@ namespace DatabaseAccess.EFCore.Repositories
             this._context = context;
         }
 
+        public List<CourseDomain> GetByIDs(List<long> ids)
+        {
+            return _context.Courses.Where(c => ids.Contains(c.Id)).ToList();
+        }
+
         public bool IsDuplicateTitle(CourseDomain course)
         {
-            return _context.Courses.Where(r => r.Title== course.Title && r.Id != course.Id).Any();
+            return _context.Courses.Where(r => r.Title == course.Title && r.Id != course.Id).Any();
         }
     }
 }

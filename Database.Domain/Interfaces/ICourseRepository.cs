@@ -10,5 +10,6 @@ namespace Database.Domain.Interfaces
     public interface ICourseRepository : IGenericRepository<CourseDomain>
     {
         bool IsDuplicateTitle(CourseDomain course);
+        List<CourseDomain> GetByIDs(List<long> ids);
     }
 }
